@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var dbConfig = require('./config/db');
+var mongoose = require('mongoose');
+mongoose.connect(dbConfig.url);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

@@ -15,8 +15,8 @@ module.exports = function (passport) {
     });
   });
 
-  // Setting up passport strategies for login
-  //  and signup/registration
+  // Setting up passport strategies for
+  // login and signup/registration
   login(passport);
   signup(passport);
 };

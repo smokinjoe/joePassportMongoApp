@@ -4,9 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// configuring Mongoose
 var dbConfig = require('./config/db');
 var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
+// configuring Passport
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({ secret: 'joe.314159265.ekiert' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

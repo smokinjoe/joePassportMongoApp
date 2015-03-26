@@ -23,7 +23,7 @@ module.exports = function (passport) {
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/home',
     failureRedirect: '/',
-    failtureFlash: true
+    failureFlash: true
   }));
 
   // GET registration page

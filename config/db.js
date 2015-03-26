@@ -9,5 +9,7 @@ module.exports = {
 
   // I *think* this http://stackoverflow.com/a/3597922/355627 helps explain what's going on
   // not sure how /passport will affect things
-  'url' : 'mongodb://127.0.0.1:27017/passport'
+  //'url' : 'mongodb://127.0.0.1:27017/passport'
+
+  'url' : 'mongodb://localhost/joeApp'
 };

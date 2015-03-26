@@ -16,10 +16,26 @@ var app = express();
 // configuring Passport
 var passport = require('passport');
 var expressSession = require('express-session');
-// complete configuring passport
-app.use(expressSession({ secret: 'joe.314159265.ekiert' }));
+app.use(expressSession({ 
+  secret: 'joe.314159265.ekiert',
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Using the flash middleware provided by connect-flash
+// to store messages in session and displaying in templates
+var flash = require('connect-flash');
+app.use(flash());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
+
+// Initialize Passport routes
+var routes = require('./routes/index')(passport);
+app.use('/', routes);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,8 +48,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
